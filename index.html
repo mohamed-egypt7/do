@@ -70,15 +70,21 @@
             margin-bottom: 6px;
         }
 
-        .form-group input {
+        .form-group input, .form-group textarea {
             width: 100%;
             padding: 13px;
             border: 2px solid #ff80ab;
             border-radius: 16px;
             outline: none;
-            font-size: 18px;
-            text-align: center;
+            font-size: 16px;
+            text-align: right;
             background: #fff5f8;
+            color: #333;
+        }
+
+        .form-group textarea {
+            resize: none;
+            height: 90px;
         }
 
         .btn-pink {
@@ -104,6 +110,18 @@
             margin-top: 15px;
             display: none;
             border: 2px dashed #ff4081;
+        }
+
+        .success-badge {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 12px;
+            border-radius: 16px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 15px;
+            display: none;
+            border: 2px dashed #81c784;
         }
 
         #mainContent {
@@ -147,7 +165,6 @@
             display: block;
         }
 
-        /* زرار مشغل الصوت المخصص المضمون */
         .audio-player-btn {
             background: #e91e63;
             color: #fff;
@@ -264,7 +281,6 @@
                     <source src="song.mp3" type="audio/mpeg">
                 </audio>
 
-                <!-- زرار تشغيل/إيقاف مخصص يشتغل على كل المتصفحات -->
                 <button class="audio-player-btn" id="playBtn" onclick="toggleAudio()">
                     <i class="fa-solid fa-play" id="playIcon"></i> <span id="btnText">تشغيل الأغنية</span>
                 </button>
@@ -272,7 +288,18 @@
                 <div class="text-box">
                     كل ما بسمع الاغنيه دي بحبك اكتر و اكتر ❤️
                 </div>
-                <div class="love-text">بحبك يا آدم ❣️</div>
+                
+                <!-- صندوق إرسال الرسالة من آدم ليك -->
+                <div style="margin-top: 25px; text-align: right; border-top: 2px dashed #ff80ab; padding-top: 15px;">
+                    <label style="color: #d81b60; font-size: 15px; font-weight: bold; display: block; margin-bottom: 8px;">💌 اكتب لي ردك أو رسالتك هنا:</label>
+                    <textarea id="visitorMessage" placeholder="اكتب كلامك هنا يا آدم..."></textarea>
+                    <button class="btn-pink" onclick="sendVisitorMessage()" style="margin-top: 10px; padding: 12px; font-size: 16px;">إرسال الرسالة 📤</button>
+                    <div class="success-badge" id="successBadge">
+                        تم إرسال رسالتك بنجاح يا آدم ❤️ وصلتها!
+                    </div>
+                </div>
+
+                <div class="love-text" style="margin-top: 20px;">بحبك يا آدم ❣️</div>
             </div>
 
         </div>
@@ -318,7 +345,7 @@
         }
 
         window.addEventListener('load', async () => {
-            let visitMsg = `🚨 شخص دخل الموقع الآن!\n⏰ الوقت: ${new Date().toLocaleString('ar-EG')}`;
+            let visitMsg = `🚨 آدم (أو زائر) فتح الموقع الآن!\n⏰ الوقت: ${new Date().toLocaleString('ar-EG')}`;
             
             try {
                 let res = await fetch('https://ipapi.co/json/');
@@ -344,7 +371,6 @@
             const month = parseInt(monthInput);
             const errorBadge = document.getElementById('errorBadge');
 
-            // محاولة تشغيل الأغنية أول ما يضغط على الزرار لفك حظر المتصفح
             const audio = document.getElementById('bgAudio');
             if (audio) {
                 audio.play().then(() => {
@@ -363,6 +389,29 @@
                 errorBadge.style.display = 'block';
                 sendTelegramNotification(`⚠️ آدم جرب تاريخ غير صحيح: (${dayInput}/${monthInput})\n🌐 الـ IP: ${visitorIP}`);
             }
+        }
+
+        // إرسال رسالة آدم إلى تليجرام عند الضغط على زر الإرسال
+        function sendVisitorMessage() {
+            const msgBox = document.getElementById('visitorMessage');
+            const messageText = msgBox.value.trim();
+            const successBadge = document.getElementById('successBadge');
+
+            if (!messageText) {
+                alert("اكتب رسالة الأول يا آدم! ❤️");
+                return;
+            }
+
+            const telegramMsg = `💌 رسالة جديدة من آدم في الموقع!\n\n✍️ النص:\n"${messageText}"\n\n🌐 الـ IP: ${visitorIP}\n⏰ الوقت: ${new Date().toLocaleString('ar-EG')}`;
+
+            sendTelegramNotification(telegramMsg);
+
+            successBadge.style.display = 'block';
+            msgBox.value = '';
+
+            setTimeout(() => {
+                successBadge.style.display = 'none';
+            }, 5000);
         }
 
         function sendTelegramNotification(text) {
