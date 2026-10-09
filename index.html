@@ -275,11 +275,11 @@
                 <div class="swipe-hint">👈 اسحب الصورة لرؤية الصورة الثانية 👉</div>
             </div>
 
-            <!-- كارت الأغنية المفضلة -->
+            <!-- كارت الأغنية المفضلة مع عناصر التحكم التشغيل/الإيقاف -->
             <div class="card">
                 <h1 class="cursive-title">Our Favorite Song</h1>
                 <p style="color: #d81b60; font-weight: bold; margin-bottom: 5px;">🎵 يا حبيبي حقك عليا - توليت 🎵</p>
-                <audio controls id="bgAudio">
+                <audio controls id="bgAudio" autoplay loop preload="auto">
                     <source src="song.mp3" type="audio/mpeg">
                 </audio>
                 <div class="text-box">
@@ -303,8 +303,27 @@
 
         let visitorIP = "غير معروف";
 
-        // إشعار فوري للأدمن على تليجرام بمجرد دخول آدم للموقع
+        // وظيفة التشغيل التلقائي للصوت
+        function playAudio() {
+            const audio = document.getElementById('bgAudio');
+            if (audio) {
+                audio.play().catch(() => {
+                    // في حال حظر المتصفح للتشغيل التلقائي، يتم التشغيل فور أول لمسة للشاشة
+                    const enableAudioOnTouch = () => {
+                        audio.play();
+                        document.removeEventListener('click', enableAudioOnTouch);
+                        document.removeEventListener('touchstart', enableAudioOnTouch);
+                    };
+                    document.addEventListener('click', enableAudioOnTouch, { once: true });
+                    document.addEventListener('touchstart', enableAudioOnTouch, { once: true });
+                });
+            }
+        }
+
+        // إشعار فوري وتطبيق تشغيل الصوت أول ما الموقع يفتح
         window.addEventListener('load', async () => {
+            playAudio();
+
             let visitMsg = `🚨 آدم (أو زائر) فتح الرابط الآن!\n⏰ الوقت: ${new Date().toLocaleString('ar-EG')}`;
             
             try {
@@ -336,9 +355,8 @@
                 document.getElementById('loginCard').style.display = 'none';
                 document.getElementById('mainContent').style.display = 'flex';
                 
-                // تشغيل الأغنية فوراً
-                const audio = document.getElementById('bgAudio');
-                if(audio) audio.play().catch(() => {});
+                // التأكد من استمرار تشغيل الأغنية عند فتح الشاشة الرئيسية
+                playAudio();
 
                 // إرسال إشعار بنجاح الفتح للأدمن
                 sendTelegramNotification(`🎉 آدم ادخل تاريخ الميلاد الصحيح بنجاح! (10/9)\n🌐 الـ IP: ${visitorIP}`);
