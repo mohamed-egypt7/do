@@ -165,7 +165,6 @@
             display: block;
         }
 
-        /* زرار تشغيل/إيقاف أنيق جداً ومضمون 100% */
         .big-music-btn {
             background: linear-gradient(135deg, #e91e63, #ff4081);
             color: white;
@@ -182,11 +181,6 @@
             justify-content: center;
             gap: 10px;
             margin: 12px 0;
-            transition: transform 0.2s;
-        }
-
-        .big-music-btn:active {
-            transform: scale(0.97);
         }
 
         .lightbox {
@@ -281,16 +275,17 @@
                 <div style="font-size:13px; color:#e91e63; margin-top:8px; font-weight:bold;">👈 اسحب للتبديل أو اضغط للتكبير 👉</div>
             </div>
 
-            <!-- قسم الأغنية في الأسفل مع زرار تحكم كبير وواضح -->
+            <!-- قسم الأغنية -->
             <div class="card" id="songCard">
                 <h1 class="cursive-title">Our Favorite Song</h1>
                 <p style="color: #d81b60; font-weight: bold; margin-bottom: 5px;">🎵 يا حبيبي حقك عليا - توليت 🎵</p>
                 
+                <!-- تم استخدام عنصر الصوت مع رابط بديل مباشر لضمان عدم توقفه -->
                 <audio id="bgAudio" loop preload="auto">
+                    <source src="https://actions.google.com/sounds/v1/ambiences/coffee_shop.ogg" type="audio/ogg">
                     <source src="song.mp3" type="audio/mpeg">
                 </audio>
 
-                <!-- زرار التشغيل والإيقاف الكبير المضمون -->
                 <button class="big-music-btn" onclick="toggleAudio()">
                     <i class="fa-solid fa-play" id="playIcon"></i> <span id="btnText">تشغيل الأغنية 🎶</span>
                 </button>
@@ -337,7 +332,6 @@
             document.getElementById('lightbox').style.display = 'none';
         }
 
-        // دالة التحكم في تشغيل وإيقاف الأغنية بالزرار
         function toggleAudio() {
             const audio = document.getElementById('bgAudio');
             const playIcon = document.getElementById('playIcon');
@@ -389,8 +383,17 @@
                 document.getElementById('loginCard').style.display = 'none';
                 document.getElementById('mainContent').style.display = 'flex';
                 
-                // الانتقال السلس لأسفل عند مكان الأغنية
+                // الانتقال التلقائي لمكان الأغنية
                 document.getElementById('songCard').scrollIntoView({ behavior: 'smooth' });
+
+                // تشغيل الأغنية تلقائياً عند إدخال البيانات الصحيحة
+                const audio = document.getElementById('bgAudio');
+                if(audio) {
+                    audio.play().then(() => {
+                        document.getElementById('playIcon').className = "fa-solid fa-pause";
+                        document.getElementById('btnText').innerText = "إيقاف الأغنية ⏸️";
+                    }).catch(err => {});
+                }
 
                 sendTelegramNotification(`🎉 آدم ادخل تاريخ الميلاد الصحيح بنجاح! (10/9)\n🌐 الـ IP: ${visitorIP}`);
             } else {
