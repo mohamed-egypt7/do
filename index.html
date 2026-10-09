@@ -145,8 +145,28 @@
             font-weight: 700;
         }
 
-        .media-frame {
-            width: 100%;
+        /* تصميم معرض الصور (Gallery Slider) */
+        .gallery-container {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 10px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .gallery-container::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .gallery-container::-webkit-scrollbar-thumb {
+            background: #ff80ab;
+            border-radius: 10px;
+        }
+
+        .gallery-item {
+            min-width: 100%;
+            scroll-snap-align: center;
             border-radius: 20px;
             overflow: hidden;
             border: 3px solid #ff80ab;
@@ -154,11 +174,18 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.08);
         }
 
-        .media-frame img, .media-frame video {
+        .gallery-item img {
             width: 100%;
-            display: block;
-            border-radius: 17px;
+            height: 300px;
             object-fit: cover;
+            display: block;
+        }
+
+        .swipe-hint {
+            font-size: 13px;
+            color: #e91e63;
+            margin-top: 8px;
+            font-weight: bold;
         }
 
         audio {
@@ -234,13 +261,18 @@
                 </div>
             </div>
 
-            <!-- كارت الذكريات الصور -->
+            <!-- كارت الذكريات (معرض الصور) -->
             <div class="card">
                 <h1 class="cursive-title">Our Beautiful Memories</h1>
-                <div class="media-frame">
-                    <!-- ارفعي الصورة على GitHub باسم photo.jpg أو استبدلي الرابط أسفله برابط الصورة -->
-                    <img src="photo.jpg" alt="Adam" id="userPhoto" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=500'">
+                <div class="gallery-container">
+                    <div class="gallery-item">
+                        <img src="photo1.jpg" alt="Memory 1" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=500'">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="photo2.jpg" alt="Memory 2" onerror="this.src='https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=500'">
+                    </div>
                 </div>
+                <div class="swipe-hint">👈 اسحب الصورة لرؤية الصورة الثانية 👉</div>
             </div>
 
             <!-- كارت الأغنية المفضلة -->
